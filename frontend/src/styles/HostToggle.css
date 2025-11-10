@@ -1,0 +1,143 @@
+.host-toggle-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  min-height: calc(100vh - 200px);
+}
+
+.host-toggle-card {
+  background-color: var(--white);
+  padding: 3rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px var(--shadow);
+  width: 100%;
+  max-width: 650px;
+}
+
+.host-toggle-card h2 {
+  color: var(--text);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.status-section {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.current-status {
+  font-size: 1.2rem;
+  color: var(--white);
+  font-weight: 400;
+}
+
+.current-status strong {
+  color: var(--white);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.info-section {
+  margin-bottom: 2.5rem;
+}
+
+.info-section h3 {
+  color: #2c3e50;
+  margin-bottom: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.info-section p {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.info-section ul {
+  list-style-position: inside;
+  color: var(--text);
+  line-height: 2;
+  background-color: var(--background);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--light-gray);
+}
+
+.info-section li {
+  padding-left: 1rem;
+  position: relative;
+}
+
+.info-section li::before {
+  content: '✓';
+  color: var(--secondary);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.toggle-btn {
+  width: 100%;
+  background-color: var(--accent);
+  color: white;
+  padding: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(101, 84, 192, 0.3);
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover:not(:disabled) {
+  background-color: #5243aa;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(101, 84, 192, 0.4);
+}
+
+.create-event-link {
+  width: 100%;
+  background-color: var(--secondary);
+  color: white;
+  padding: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(54, 179, 126, 0.3);
+  transition: all 0.3s ease;
+}
+
+.create-event-link:hover {
+  background-color: #2a9868;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(54, 179, 126, 0.4);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .host-toggle-card {
+    padding: 2.5rem 2rem;
+  }
+
+  .host-toggle-card h2 {
+    font-size: 1.8rem;
+  }
+
+  .info-section h3 {
+    font-size: 1.2rem;
+  }
+}

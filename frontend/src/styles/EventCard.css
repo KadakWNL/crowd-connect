@@ -1,0 +1,111 @@
+.event-card {
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--shadow);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--light-gray);
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--hover-shadow);
+}
+
+.event-card-header {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--white);
+  padding: 1.5rem;
+}
+
+.event-card-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.event-category {
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  color: var(--white);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px var(--shadow);
+  white-space: nowrap;
+}
+
+.event-card-body {
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+}
+
+.event-date,
+.event-location {
+  margin: 0.5rem 0;
+  color: var(--text);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.8;
+}
+
+.event-date::before {
+  content: '📅';
+  font-size: 1.1rem;
+}
+
+.event-location::before {
+  content: '📍';
+  font-size: 1.1rem;
+}
+
+.event-description {
+  color: var(--text);
+  margin-top: 1rem;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.event-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  margin-top: auto;
+}
+
+.view-details-btn {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 0.8rem 2rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(0, 82, 204, 0.3);
+  transition: all 0.3s ease;
+}
+
+.view-details-btn:hover {
+  background-color: #0747a6;
+  box-shadow: 0 4px 12px rgba(0, 82, 204, 0.4);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .event-card {
+    padding: 1rem;
+  }
+
+  .event-card h3 {
+    font-size: 1.1rem;
+  }
+}

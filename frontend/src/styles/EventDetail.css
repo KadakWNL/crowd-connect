@@ -1,0 +1,239 @@
+.event-detail {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+.back-btn {
+  background-color: var(--white);
+  color: var(--primary);
+  padding: 0.7rem 1.5rem;
+  border: 2px solid var(--primary);
+  border-radius: 6px;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.back-btn:hover {
+  background-color: var(--primary);
+  color: var(--white);
+  transform: translateX(-4px);
+}
+
+.event-detail-header {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--white);
+  padding: 2.5rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.event-detail-header h1 {
+  margin: 0 0 1rem 0;
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.event-category-badge {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--white);
+  padding: 0.6rem 1.5rem;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px var(--shadow);
+  white-space: nowrap;
+}
+
+.event-detail-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.event-info {
+  background-color: var(--white);
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.info-row {
+  margin-bottom: 1.8rem;
+  color: var(--text);
+  padding: 1rem;
+  background-color: var(--background);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.info-row:hover {
+  background-color: rgba(0, 82, 204, 0.05);
+  transform: translateX(4px);
+}
+
+.info-row strong {
+  display: block;
+  margin-bottom: 0.7rem;
+  color: var(--primary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.info-row.description {
+  background: transparent;
+  padding: 0;
+}
+
+.info-row.description:hover {
+  transform: none;
+}
+
+.info-row.description p {
+  color: var(--text);
+  line-height: 1.8;
+  margin-top: 0.5rem;
+  font-size: 1.05rem;
+  background-color: var(--background);
+  padding: 1.5rem;
+  border-radius: 8px;
+  opacity: 0.9;
+}
+
+.event-map {
+  background-color: var(--white);
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.event-map h3 {
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.event-map h3::before {
+  content: '🗺️ ';
+  font-size: 1.4rem;
+}
+
+.leaflet-container {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.event-attendance {
+  background-color: var(--white);
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px var(--shadow);
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.attendance-info {
+  flex: 1;
+}
+
+.attendee-count {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.attendee-count svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.attendee-count span {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.attendee-count strong {
+  font-size: 2.5rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.interest-btn {
+  background-color: var(--secondary);
+  color: var(--white);
+  padding: 1.2rem 3rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(54, 179, 126, 0.3);
+}
+
+.interest-btn:hover:not(:disabled) {
+  background-color: #2a9868;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(54, 179, 126, 0.4);
+}
+
+.interest-btn.attending {
+  background-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(101, 84, 192, 0.3);
+}
+
+.interest-btn.attending:hover:not(:disabled) {
+  background-color: #5243aa;
+  box-shadow: 0 4px 12px rgba(101, 84, 192, 0.4);
+}
+
+.interest-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .event-detail-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .event-detail-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .event-detail-content {
+    grid-template-columns: 1fr;
+  }
+
+  .event-attendance {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .attendee-count {
+    justify-content: center;
+  }
+
+  .interest-btn {
+    width: 100%;
+  }
+}
