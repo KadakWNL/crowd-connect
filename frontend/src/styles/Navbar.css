@@ -1,107 +1,121 @@
 .navbar {
-  background-color: var(--primary);
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 8px var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 2rem;
+  height: var(--nav-height);
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--background);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100; /* Higher than leaflet controls */
+  box-shadow: 0 2px 10px var(--shadow);
 }
 
 .navbar-logo {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--primary);
+  letter-spacing: 1px;
+}
+
+.navbar-logo span {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.navbar-links {
   display: flex;
   align-items: center;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
+  gap: 1.5rem;
 }
 
-.navbar-logo img {
-  height: 30px;
-  width: auto;
-  filter: brightness(0) invert(1);
+.navbar-link {
+  color: var(--secondary);
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.2s ease-in-out;
 }
 
-.navbar-logo:hover {
-  opacity: 0.8;
-  text-decoration: none;
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width 0.3s ease-in-out;
 }
 
-.navbar-menu {
+.navbar-link:hover,
+.navbar-link.active {
+  color: var(--primary);
+}
+
+.navbar-link:hover::after,
+.navbar-link.active::after {
+  width: 100%;
+}
+
+.navbar-user {
   display: flex;
-  list-style: none;
   align-items: center;
   gap: 1rem;
-  margin: 0;
-  padding: 0;
 }
 
-.navbar-menu li a {
-  color: var(--white);
-  text-decoration: none;
+.navbar-username {
+  font-weight: 500;
+  color: var(--secondary);
+}
+
+.navbar-logout-btn {
+  background: var(--accent);
+  color: var(--background);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.navbar-logout-btn:hover {
+  background: #f7b54a; /* Slightly lighter accent */
+}
+
+.navbar-auth-links a {
   font-weight: 600;
   padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: all 0.3s;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
 }
 
-.navbar-menu li a:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+.navbar-auth-links a:first-child {
+  color: var(--secondary);
 }
 
-.logout-btn {
-  background-color: var(--secondary);
-  color: var(--white);
-  border: none;
-  padding: 0.6rem 1.5rem;
-  border-radius: 6px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(54, 179, 126, 0.3);
-}
-
-.logout-btn:hover {
-  background-color: #2a9868;
-  box-shadow: 0 4px 12px rgba(54, 179, 126, 0.4);
-  transform: translateY(-1px);
-}
-
-.user-greeting {
+.navbar-auth-links a:first-child:hover {
   color: var(--primary);
-  background-color: var(--white);
-  font-weight: 600;
-  padding: 0.5rem 1.2rem;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px var(--shadow);
+  background-color: var(--surface);
 }
 
-/* 📱 Responsive Navbar */
+.navbar-auth-links a:last-child {
+  background-color: var(--accent);
+  color: var(--background);
+}
+
+.navbar-auth-links a:last-child:hover {
+  background-color: #f7b54a;
+}
+
 @media (max-width: 768px) {
   .navbar {
-    padding: 1rem;
+    padding: 0 1rem;
   }
 
-  .navbar-container {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .navbar-menu {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-
-  .navbar-menu li a,
-  .logout-btn {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+  .navbar-links {
+    display: none; /* Simple responsive approach for now */
   }
 }

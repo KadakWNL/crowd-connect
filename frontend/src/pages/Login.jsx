@@ -32,7 +32,10 @@ function Login({ setUser }) {
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h2>Login to CrowdConnect</h2>
+        <div className="auth-header">
+          <h2>Welcome Back</h2>
+          <p>Login to <span className="logo-text">crowd<span className="logo-accent">connect</span></span></p>
+        </div>
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
           <div className="form-group">

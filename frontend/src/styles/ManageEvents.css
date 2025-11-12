@@ -7,18 +7,21 @@
 }
 
 .manage-events-container h2 {
-  color: var(--text);
+  color: var(--primary);
   margin-bottom: 2rem;
   font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
+  border-bottom: 1px solid var(--surface);
+  padding-bottom: 1rem;
 }
 
 .events-table-wrapper {
-  background-color: var(--white);
-  border-radius: 8px;
+  background-color: var(--surface);
+  border-radius: var(--radius);
   box-shadow: 0 4px 12px var(--shadow);
   overflow: hidden;
+  border: 1px solid var(--background);
 }
 
 .events-table {
@@ -27,8 +30,7 @@
 }
 
 .events-table thead {
-  background-color: var(--primary);
-  color: var(--white);
+  background-color: var(--background);
 }
 
 .events-table th {
@@ -36,12 +38,14 @@
   text-align: left;
   font-weight: 600;
   font-size: 1rem;
+  color: var(--primary);
+  border-bottom: 1px solid var(--surface);
 }
 
 .events-table td {
   padding: 1rem;
-  border-bottom: 1px solid var(--light-gray);
-  color: var(--text);
+  border-bottom: 1px solid var(--background);
+  color: var(--secondary);
 }
 
 .events-table tbody tr:hover {
@@ -60,46 +64,43 @@
 .action-btn {
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 4px;
-  color: var(--white);
+  border-radius: var(--radius);
+  color: var(--background);
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
 .action-btn.view {
-  background-color: var(--primary);
+  background-color: var(--accent);
 }
-
 .action-btn.view:hover {
-  background-color: #0747a6;
+  background-color: #f7b54a;
 }
 
 .action-btn.attendees {
-  background-color: var(--secondary);
+  background-color: var(--success);
 }
-
 .action-btn.attendees:hover {
-  background-color: #2a9868;
+  background-color: #2fbe6e;
 }
 
 .action-btn.delete {
-  background-color: #DE350B;
+  background-color: var(--error);
 }
-
 .action-btn.delete:hover {
-  background-color: #BF2600;
+  background-color: #f06a6a;
 }
 
 .no-events {
   text-align: center;
   padding: 3rem;
-  color: var(--text);
+  color: var(--secondary);
   font-size: 1.2rem;
-  background-color: var(--white);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px var(--shadow);
+  background-color: var(--surface);
+  border-radius: var(--radius);
+  border: 1px dashed var(--secondary);
 }
 
 @media (max-width: 768px) {
