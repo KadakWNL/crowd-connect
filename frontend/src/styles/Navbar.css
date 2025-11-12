@@ -30,6 +30,10 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  /* Added for perfect centering */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .navbar-link {
@@ -65,11 +69,22 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  /* Added to keep it on the right */
+  margin-left: auto;
 }
 
-.navbar-username {
+.navbar-username-link {
   font-weight: 500;
   color: var(--secondary);
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar-username-link:hover {
+  color: var(--primary);
+  background-color: var(--surface);
 }
 
 .navbar-logout-btn {
@@ -83,6 +98,11 @@
 
 .navbar-logout-btn:hover {
   background: #f7b54a; /* Slightly lighter accent */
+}
+
+.navbar-auth-links {
+  /* Added to keep it on the right */
+  margin-left: auto;
 }
 
 .navbar-auth-links a {
@@ -110,12 +130,75 @@
   background-color: #f7b54a;
 }
 
-@media (max-width: 768px) {
+/* Hamburger Menu Styles */
+.navbar-hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--primary);
+  /* Added to keep it on the right */
+  margin-left: auto;
+}
+
+.navbar-user-mobile {
+  display: none;
+}
+
+@media (max-width: 850px) {
   .navbar {
-    padding: 0 1rem;
+    padding: 0 1.5rem;
+  }
+
+  .navbar-hamburger {
+    display: block;
+  }
+
+  .navbar-user,
+  .navbar-auth-links {
+    display: none;
   }
 
   .navbar-links {
-    display: none; /* Simple responsive approach for now */
+    position: fixed;
+    top: var(--nav-height);
+    left: -100%;
+    /* Reset centering for mobile view */
+    transform: none;
+    width: 100%;
+    height: calc(100vh - var(--nav-height));
+    background-color: var(--surface);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 2rem;
+    gap: 1.5rem;
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  .navbar-links.active {
+    left: 0;
+  }
+
+  .navbar-link {
+    font-size: 1.2rem;
+  }
+
+  .navbar-user-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--background);
+    width: 80%;
+  }
+
+  .navbar-user-mobile .navbar-link,
+  .navbar-user-mobile .navbar-logout-btn {
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: center;
   }
 }

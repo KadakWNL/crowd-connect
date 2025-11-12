@@ -30,8 +30,8 @@ function EventDetail() {
           try {
             const userData = await getCurrentUser();
             setUser(userData);
-            // Check if user is attending
-            setIsAttending(eventData.attendees?.includes(userData._id) || false);
+            // Check if user is attending by looking at their own attending list
+            setIsAttending(userData.attending?.includes(id) || false);
           } catch (err) {
             // User not logged in or token invalid
             console.log('User not logged in');

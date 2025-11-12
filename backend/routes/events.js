@@ -130,35 +130,49 @@ router.delete('/:id', authMiddleware, async (req, res) => {
 // Attend/Unattend event
 router.post('/:id/attend', authMiddleware, async (req, res) => {
   try {
-    const event = await Event.findById(req.params.id);
+    const eventId = req.params.id;
+    const userId = req.userId;
+
+    const event = await Event.findById(eventId);
     if (!event) {
       return res.status(404).json({ message: 'Event not found' });
     }
 
-    // Check if user is already attending
-    const isAttending = event.attendees.includes(req.userId);
-    
-    if (isAttending) {
-      // Unattend: remove user from attendees
-      event.attendees = event.attendees.filter(
-        attendeeId => attendeeId.toString() !== req.userId
-      );
-      await event.save();
-      return res.json({ 
-        message: 'Successfully removed from attendees',
-        isAttending: false,
-        attendeeCount: event.attendees.length
-      });
-    } else {
-      // Attend: add user to attendees
-      event.attendees.push(req.userId);
-      await event.save();
-      return res.json({ 
-        message: 'Successfully added to attendees',
-        isAttending: true,
-        attendeeCount: event.attendees.length
-      });
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
+
+    const isAttending = event.attendees.includes(userId);
+    const isAttendingInUser = user.attending.includes(eventId);
+
+    if (isAttending) {
+      // Unattend
+      event.attendees = event.attendees.filter(
+        attendeeId => attendeeId.toString() !== userId
+      );
+      if (isAttendingInUser) {
+        user.attending = user.attending.filter(
+          id => id.toString() !== eventId
+        );
+      }
+    } else {
+      // Attend
+      event.attendees.push(userId);
+      if (!isAttendingInUser) {
+        user.attending.push(eventId);
+      }
+    }
+
+    await event.save();
+    await user.save();
+
+    return res.json({
+      message: `Successfully ${isAttending ? 'removed from' : 'added to'} attendees`,
+      isAttending: !isAttending,
+      attendeeCount: event.attendees.length
+    });
+
   } catch (error) {
     console.error('Attend/unattend event error:', error);
     res.status(500).json({ message: 'Server error' });

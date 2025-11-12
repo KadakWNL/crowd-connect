@@ -78,3 +78,10 @@ export const toggleAttendEvent = async (id) => {
   });
   return response.data;
 };
+
+export const getMyEvents = async () => {
+  const response = await axios.get(`${API_URL}/users/my-events`, {
+    headers: getAuthHeader()
+  });
+  return response.data;
+};

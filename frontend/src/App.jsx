@@ -9,6 +9,8 @@ import CreateEvent from './pages/CreateEvent';
 import HostToggle from './pages/HostToggle';
 import ManageEvents from './pages/ManageEvents';
 import AttendeesList from './pages/AttendeesList';
+import About from './pages/About';
+import UserProfile from './pages/UserProfile';
 import { getCurrentUser } from './services/api';
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
         <Navbar user={user} setUser={setUser} />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/profile" element={<UserProfile user={user} />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/signup" element={<Signup setUser={setUser} />} />
           <Route path="/events/:id" element={<EventDetail />} />

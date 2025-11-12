@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  attending: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Event'
+  }],
   createdAt: {
     type: Date,
     default: Date.now
