@@ -30,8 +30,29 @@ function EventDetail() {
           try {
             const userData = await getCurrentUser();
             setUser(userData);
-            // Check if user is attending by looking at their own attending list
-            setIsAttending(userData.attending?.includes(id) || false);
+            // Robust attendance check:
+            // - user's attending list may store IDs as numbers/strings
+            // - event attendees may be stored as user IDs or objects
+            const checkAttendance = (userObj, evt) => {
+              const eventIdStr = String(id);
+              const userId = userObj?._id || userObj?.id;
+
+              // Check user's attending list (compare loosely by string)
+              const inUserList = Array.isArray(userObj?.attending) && userObj.attending.some(item => String(item) === eventIdStr);
+
+              // Check event's attendees for this user (handles id or object forms)
+              const inEventList = Array.isArray(evt?.attendees) && evt.attendees.some(att => {
+                if (!att) return false;
+                // attendee could be a plain id or an object with userId/_id
+                if (typeof att === 'string' || typeof att === 'number') return String(att) === String(userId);
+                if (typeof att === 'object') return String(att.userId || att._id || att.id) === String(userId);
+                return false;
+              });
+
+              return Boolean(inUserList || inEventList);
+            };
+
+            setIsAttending(checkAttendance(userData, eventData));
           } catch (err) {
             // User not logged in or token invalid
             console.log('User not logged in');
