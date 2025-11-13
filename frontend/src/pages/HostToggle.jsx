@@ -64,7 +64,7 @@ function HostToggle({ user, setUser }) {
 
         {user.isHost && (
           <button onClick={() => navigate('/create-event')} className="create-event-link">
-            Create Your First Event
+            Create an Event
           </button>
         )}
       </div>

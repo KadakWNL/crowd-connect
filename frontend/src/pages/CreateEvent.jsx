@@ -26,7 +26,7 @@ function CreateEvent({ user }) {
     locationName: ''
   });
   const [position, setPosition] = useState(null);
-  const [mapCenter, setMapCenter] = useState([40.7128, -74.0060]); // Default to New York
+  const [mapCenter, setMapCenter] = useState([12.9716, 77.5946]); // Default to Bengaluru
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
