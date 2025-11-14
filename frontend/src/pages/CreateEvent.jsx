@@ -76,6 +76,12 @@ function CreateEvent({ user }) {
       setError('You must be a host to create events');
       return;
     }
+    const selectedDate = new Date(`${formData.date}T${formData.time}`);
+    const now = new Date();
+    if (selectedDate < now) {
+      setError('Cannot create events for past dates and times');
+      return;
+    }
 
     setLoading(true);
 
@@ -85,6 +91,7 @@ function CreateEvent({ user }) {
         latitude: position.lat,
         longitude: position.lng
       });
+      alert('Event created successfully!');
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to create event. Please try again.');
@@ -156,6 +163,7 @@ function CreateEvent({ user }) {
               name="date"
               value={formData.date}
               onChange={handleChange}
+              min={new Date().toISOString().split('T')[0]}
               required
             />
           </div>

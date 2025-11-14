@@ -49,6 +49,13 @@
   color: var(--text-primary);
 }
 
+.form-group input[type="date"]::-webkit-calendar-picker-indicator,
+.form-group input[type="time"]::-webkit-calendar-picker-indicator {
+  background-color: #def200;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {

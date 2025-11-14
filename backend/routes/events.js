@@ -7,6 +7,20 @@ const User = require('../models/User');
 
 router.get('/', async (req, res) => {
   try {
+    // to delete previous events (event data < curr date)
+    const now = new Date();
+    const allEvents = await Event.find();
+    for (const event of allEvents) {
+      const eventDateTime = new Date(`${event.date}T${event.time}`);
+      if (eventDateTime < now) {
+        await Event.findByIdAndDelete(event._id);
+        await User.updateMany(
+          { attending: event._id },
+          { $pull: { attending: event._id } }
+        );
+      }
+    }
+    
     const events = await Event.find().populate('hostUserId', 'username').sort({ createdAt: -1 });
     res.json(events);
   } catch (error) {
@@ -53,6 +67,12 @@ router.post('/', [
     }
 
     const { title, description, date, time, category, locationName, latitude, longitude } = req.body;
+
+    const eventDateTime = new Date(`${date}T${time}`);
+    const now = new Date();
+    if (eventDateTime < now) {
+      return res.status(400).json({ message: 'Cannot create events for past dates and times' });
+    }
 
     const event = new Event({
       title,
